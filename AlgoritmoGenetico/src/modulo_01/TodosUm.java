@@ -32,7 +32,7 @@ public class TodosUm {
 			geracao++;
 		}
 
-		System.out.println("Genoma alcanÃ§ado apos: " + geracao + " geracoes");
+		System.out.println("Genoma alcançado após: " + geracao + " gerações");
 		System.out.println("Genoma: " + populacao.getFitnest(0).ToString());
 
 	}
