@@ -4,7 +4,7 @@ public class TodosUm {
 
 	public static void main(String[] args) {
 		// Criar objeto do algoritmo genetico
-		AlgoritmoGenetico ag = new AlgoritmoGenetico(100, 0.001, 0.95, 5);
+		AlgoritmoGenetico ag = new AlgoritmoGenetico(100, 0.001, 0.95, 1);
 
 		// criar a populacao do algoritomo
 		Populacao populacao = ag.iniciarPopulacao(180);
