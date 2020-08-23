@@ -14,6 +14,8 @@ public class TodosUm {
 
 		// iniciando com a primeira geracao
 		int geracao = 1;
+		
+		System.out.println("Genoma Inicial: " + populacao.getFitnest(0).ToString());
 
 		while (ag.condicaoFinalizar(populacao) == false) {
 			// imiprimi o melhor individuo da populacao atual
