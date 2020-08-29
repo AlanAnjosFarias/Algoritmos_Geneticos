@@ -84,7 +84,7 @@ public class AlgoritmoGenetico {
 			// aplicando cruzamento
 			if (this.cruzamentoTaxa > Math.random() && indexPopulacao >= this.numElites) {
 
-				// inicializa ancestral
+				// inicializa filho
 				Individuo filho = new Individuo(pai.getCromossomoTamanho());
 
 				// encontra o individuo mae
@@ -117,9 +117,9 @@ public class AlgoritmoGenetico {
 		for (int indexPopulacao = 0; indexPopulacao < populacao.populacaoTamanho(); indexPopulacao++) {
 			Individuo individuo = populacao.getFitnest(indexPopulacao);
 
-			for (int indexGene = 0; indexGene < individuo.getCromossomoTamanho(); indexGene++) {
-				// pula mutacao para os membros elite
-				if (indexPopulacao >= this.numElites) {
+			// pula mutacao para os membros elite
+			if (indexPopulacao >= this.numElites) {
+				for (int indexGene = 0; indexGene < individuo.getCromossomoTamanho(); indexGene++) {
 					if (this.mutacaoTaxa > Math.random()) {
 						// obtem novo gene
 						int novoGene = 1;
