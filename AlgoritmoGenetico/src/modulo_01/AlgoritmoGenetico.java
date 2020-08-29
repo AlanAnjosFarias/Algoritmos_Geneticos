@@ -85,7 +85,7 @@ public class AlgoritmoGenetico {
 			if (this.cruzamentoTaxa > Math.random() && indexPopulacao >= this.numElites) {
 
 				// inicializa ancestral
-				Individuo ancestral = new Individuo(pai.getCromossomoTamanho());
+				Individuo filho = new Individuo(pai.getCromossomoTamanho());
 
 				// encontra o individuo mae
 				Individuo mae = selecionaPais(populacao);
@@ -94,12 +94,12 @@ public class AlgoritmoGenetico {
 				for (int indexGene = 0; indexGene < pai.getCromossomoTamanho(); indexGene++) {
 					// usa metade do cromossomo do pai e metada da mae
 					if (0.5 > Math.random()) {
-						ancestral.setGene(indexGene, pai.getGene(indexGene));
+						filho.setGene(indexGene, pai.getGene(indexGene));
 					} else {
-						ancestral.setGene(indexGene, mae.getGene(indexGene));
+						filho.setGene(indexGene, mae.getGene(indexGene));
 					}
 				}
-				novaPopulacao.setIndividuo(indexPopulacao, ancestral);
+				novaPopulacao.setIndividuo(indexPopulacao, filho);
 
 			} else {
 				novaPopulacao.setIndividuo(indexPopulacao, pai);
