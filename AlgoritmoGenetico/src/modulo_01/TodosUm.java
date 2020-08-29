@@ -36,5 +36,4 @@ public class TodosUm {
 		System.out.println("Genoma: " + populacao.getFitnest(0).ToString());
 
 	}
-
 }
