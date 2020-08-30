@@ -9,7 +9,7 @@ public class Robo {
 
 	private int xPosicao;
 	private int yPosicao;
-	private Direcao heading;
+	private Direcao direcao;
 	int maxMovimento;
 	int movimento;
 	private int valorSensor;
@@ -32,7 +32,7 @@ public class Robo {
 		this.xPosicao = posicaoInicial[0];
 		this.yPosicao = posicaoInicial[1];
 		this.valorSensor = -1;
-		this.heading = Direcao.LESTE;
+		this.direcao = Direcao.LESTE;
 		this.maxMovimento = maxMovimento;
 		this.movimento = 0;
 		this.rota = new ArrayList<int[]>();
@@ -110,22 +110,22 @@ public class Robo {
 			int atualY = this.yPosicao;
 
 			// Se move dependendo da direcao atual
-			if (Direcao.NORTE == this.heading) {
+			if (Direcao.NORTE == this.direcao) {
 				this.yPosicao += 1;
 				if (this.yPosicao < 0) {
 					this.yPosicao = 0;
 				}
-			} else if (Direcao.LESTE == this.heading) {
+			} else if (Direcao.LESTE == this.direcao) {
 				this.xPosicao += 1;
 				if (this.xPosicao > this.maze.getMaxColuna()) {
 					this.xPosicao = this.maze.getMaxColuna();
 				}
-			} else if (Direcao.SUL == this.heading) {
+			} else if (Direcao.SUL == this.direcao) {
 				this.yPosicao += 1;
 				if (this.yPosicao > this.maze.getMaxLinha()) {
 					this.yPosicao = this.maze.getMaxLinha();
 				}
-			} else if (Direcao.OESTE == this.heading) {
+			} else if (Direcao.OESTE == this.direcao) {
 				this.xPosicao += -1;
 				if (this.xPosicao < 0) {
 					this.xPosicao = 0;
@@ -145,33 +145,33 @@ public class Robo {
 		
 		// Movimento giro horario
 		else if(this.getProximaAcao() == 2) {
-			if(Direcao.NORTE == this.heading) {
-				this.heading = Direcao.LESTE;
+			if(Direcao.NORTE == this.direcao) {
+				this.direcao = Direcao.LESTE;
 			}
-			else if(Direcao.LESTE == this.heading) {
-				this.heading = Direcao.SUL;
+			else if(Direcao.LESTE == this.direcao) {
+				this.direcao = Direcao.SUL;
 			}
-			else if(Direcao.SUL == this.heading) {
-				this.heading = Direcao.OESTE;
+			else if(Direcao.SUL == this.direcao) {
+				this.direcao = Direcao.OESTE;
 			}
-			else if(Direcao.OESTE == this.heading) {
-				this.heading = Direcao.NORTE;
+			else if(Direcao.OESTE == this.direcao) {
+				this.direcao = Direcao.NORTE;
 			}
 		}
 		
 		// movimento firo anti-horario
 		else if(this.getProximaAcao() == 3) {
-			if(Direcao.NORTE == this.heading) {
-				this.heading = Direcao.OESTE;
+			if(Direcao.NORTE == this.direcao) {
+				this.direcao = Direcao.OESTE;
 			}
-			else if(Direcao.LESTE == this.heading) {
-				this.heading = Direcao.NORTE;
+			else if(Direcao.LESTE == this.direcao) {
+				this.direcao = Direcao.NORTE;
 			}
-			else if(Direcao.SUL == this.heading) {
-				this.heading = Direcao.LESTE;
+			else if(Direcao.SUL == this.direcao) {
+				this.direcao = Direcao.LESTE;
 			}
-			else if(Direcao.OESTE == this.heading) {
-				this.heading = Direcao.SUL;
+			else if(Direcao.OESTE == this.direcao) {
+				this.direcao = Direcao.SUL;
 			}
 		}
 		
@@ -205,7 +205,7 @@ public class Robo {
 		sensorFrontal = sensorFrontalEsquerdo = sensorFrontalDireito = sensorEsquerdo = sensorDireito = sensorTraseiro = false;
 		
 		// Encontrar quais sensores estao ativados
-		if(this.getHeading() == Direcao.NORTE) {
+		if(this.getDirecao() == Direcao.NORTE) {
 			sensorFrontal = this.maze.isParede(this.xPosicao, this.yPosicao-1);
 			sensorFrontalEsquerdo = this.maze.isParede(this.xPosicao-1, this.yPosicao-1);
 			sensorFrontalDireito = this.maze.isParede(this.xPosicao+1, this.yPosicao-1);
@@ -213,7 +213,7 @@ public class Robo {
 			sensorDireito = this.maze.isParede(this.xPosicao+1, this.yPosicao);
 			sensorTraseiro = this.maze.isParede(this.xPosicao, this.yPosicao+1);
 		}
-		else if(this.getHeading() == Direcao.LESTE) {
+		else if(this.getDirecao() == Direcao.LESTE) {
 			sensorFrontal = this.maze.isParede(this.xPosicao+1, this.yPosicao);
 			sensorFrontalEsquerdo = this.maze.isParede(this.xPosicao+1, this.yPosicao-1);
 			sensorFrontalDireito = this.maze.isParede(this.xPosicao+1, this.yPosicao+1);
@@ -221,7 +221,7 @@ public class Robo {
 			sensorDireito = this.maze.isParede(this.xPosicao, this.yPosicao+1);
 			sensorTraseiro = this.maze.isParede(this.xPosicao-1, this.yPosicao);
 		}
-		else if(this.getHeading() == Direcao.SUL) {
+		else if(this.getDirecao() == Direcao.SUL) {
 			sensorFrontal = this.maze.isParede(this.xPosicao, this.yPosicao+1);
 			sensorFrontalEsquerdo = this.maze.isParede(this.xPosicao+1, this.yPosicao+1);
 			sensorFrontalDireito = this.maze.isParede(this.xPosicao-1, this.yPosicao+1);
@@ -237,8 +237,52 @@ public class Robo {
 			sensorDireito = this.maze.isParede(this.xPosicao, this.yPosicao-1);
 			sensorTraseiro = this.maze.isParede(this.xPosicao+1, this.yPosicao);
 		}
+		
+		//calculando valor do sensor
+		int auxValorSensor = 0;
+		
+		if(sensorFrontal == true) {
+			auxValorSensor += 1;
+		}
+		if(sensorFrontalEsquerdo == true) {
+			auxValorSensor += 2;
+		}
+		if(sensorFrontalDireito == true) {
+			auxValorSensor += 4;
+		}
+		if(sensorEsquerdo == true) {
+			auxValorSensor += 8;
+		}
+		if(sensorDireito == true) {
+			auxValorSensor += 16;
+		}
+		if(sensorTraseiro == true) {
+			auxValorSensor += 32;
+		}
+		
+		this.valorSensor = auxValorSensor;
+		
+		return auxValorSensor;
 	}
 	
+	/**
+     * 
+     * Obtendo a posicao do robo
+     * 
+     * @return int[] Array com a posicao do robo
+     */
+	public int[] getPosicao() {
+		return new int[] {this.xPosicao, this.yPosicao};
+	}
+	
+	/**
+     * Obtem a direcao do robo
+     *  
+     * @return direcao do robo
+     */
+	private Direcao getDirecao() {
+		return this.direcao;
+	}
 	
 
 }
