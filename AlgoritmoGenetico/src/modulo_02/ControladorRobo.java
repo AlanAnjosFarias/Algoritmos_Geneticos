@@ -48,6 +48,7 @@ public class ControladorRobo {
 			System.out.println("Geração: " + geracao + " Melhor solucao (" + melhorIndividuo.getFitness() + "): " + melhorIndividuo.ToString() );
 			
 			// realizar cruzamento
+			populacao = ag.cruzamentoPopulacao(populacao);
 			
 			// realizar mutacao
 			populacao = ag.mutacaoPopulacao(populacao);

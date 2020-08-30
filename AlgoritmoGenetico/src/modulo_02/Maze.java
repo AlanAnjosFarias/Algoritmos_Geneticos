@@ -25,7 +25,7 @@ public class Maze {
 		int auxPosicaoInicial[] = { 0, 0 };
 
 		// loop para linhas
-		for (int linha = 0; linha < this.maze[linha].length; linha++) {
+		for (int linha = 0; linha < this.maze.length; linha++) {
 			// loop colunas
 			for (int coluna = 0; coluna < this.maze[linha].length; coluna++) {
 				// 2 é a representacoa para a aposicao inicial em decimal devido a conversao de
@@ -34,10 +34,9 @@ public class Maze {
 					this.posicaoInicial = new int[] { coluna, linha };
 					return new int[] { coluna, linha };
 				}
-
 			}
-
 		}
+		
 		return auxPosicaoInicial;
 	}
 
@@ -110,6 +109,7 @@ public class Maze {
 				visitado[passo[1]][passo[0]] = true;
 			}
 		}
+		
 		return score;
 	}
 

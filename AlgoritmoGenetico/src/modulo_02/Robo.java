@@ -85,10 +85,10 @@ public class Robo {
 		for (int valorSensor = 0; valorSensor < numAcao; valorSensor++) {
 			// obtem a acao do sensor
 			int auxAcaoSensor = 0;
-			if (palavraAcaoSensor[valorSensor * 2] == 1) {
+			if (palavraAcaoSensor[valorSensor*2] == 1) {
 				auxAcaoSensor += 2;
 			}
-			if (palavraAcaoSensor[(valorSensor * 2) + 1] == 1) {
+			if (palavraAcaoSensor[(valorSensor*2) + 1] == 1) {
 				auxAcaoSensor += 1;
 			}
 
@@ -111,7 +111,7 @@ public class Robo {
 
 			// Se move dependendo da direcao atual
 			if (Direcao.NORTE == this.direcao) {
-				this.yPosicao += 1;
+				this.yPosicao += -1;
 				if (this.yPosicao < 0) {
 					this.yPosicao = 0;
 				}
