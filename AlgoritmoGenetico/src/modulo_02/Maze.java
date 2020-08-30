@@ -1,6 +1,6 @@
 package modulo_02;
 
-import com.sun.org.apache.bcel.internal.generic.RETURN;
+import java.util.ArrayList;
 
 public class Maze {
 	private final int maze[][];
@@ -40,66 +40,77 @@ public class Maze {
 		}
 		return auxPosicaoInicial;
 	}
-	
+
 	/**
 	 * Obtem o valro que represena a posicao atual do labirinto
 	 * 
-	 * @param x  posicao
-	 *            
-	 * @param y  posicao
-	 *            
+	 * @param x posicao
+	 * 
+	 * @param y posicao
+	 * 
 	 * @return int com os valores da posicao
-	 */	
+	 */
 	public int getPosicao(int x, int y) {
-		if(x < 0 || y < 0 || x >= this.maze.length || y >= this.maze[0].length ){
-			return 1;			
+		if (x < 0 || y < 0 || x >= this.maze.length || y >= this.maze[0].length) {
+			return 1;
 		}
 		return this.maze[y][x];
 	}
-	
+
 	/**
 	 * verifica se a posicao passada eh uma parede
 	 * 
-	 * @param x  posicao
-	 *           
-	 * @param y  posicao
-	 *            
+	 * @param x posicao
+	 * 
+	 * @param y posicao
+	 * 
 	 * @return boolean
 	 */
 	public boolean isParede(int x, int y) {
 		return (this.getPosicao(x, y) == 1);
 	}
-	
+
 	/**
-	 * Obtem o valor maximo para o index da coluna
-	 * x -> coluna
-	 * y -> linha
+	 * Obtem o valor maximo para o index da coluna x -> coluna y -> linha
+	 * 
 	 * @return int Max index coluna
 	 */
 	public int getMaxColuna() {
 		return this.maze[0].length - 1;
 	}
-	
+
 	/**
-	 * Obtem o valor maximo para o index da Liha
-	 * x -> coluna
-	 * y -> linha
+	 * Obtem o valor maximo para o index da Liha x -> coluna y -> linha
+	 * 
 	 * @return int Max index linha
 	 */
 	public int getMaxLinha() {
 		return this.maze.length - 1;
 	}
-	
+
 	/**
-	 * Scores a maze route
+	 * crie rank/score para a rota do labirinto
 	 * 
-	 * This method inspects a route given as an array, and adds a point for each
-	 * correct step made. We also have to be careful not to reward re-visiting
-	 * correct paths, otherwise you could get an infinite score just by wiggling
-	 * back and forth on the route.
+	 * Metodo para inspecionar uma rota e pontua cada etapa realizada corretamente
+	 * Tomar cuidado para potuar novamente lugares ja visitados
 	 * 
 	 * @return int Max index
 	 */
-	
+	public int scoreRota(ArrayList<int[]> rota) {
+		int score = 0;
+		boolean visitado[][] = new boolean[this.getMaxLinha() + 1][this.getMaxColuna() + 1];
+
+		// loop para percorrer a rota e pontuar cada movimento
+		for (Object passoRota : rota) {
+			int passo[] = (int[]) passoRota;
+			if (this.maze[passo[1]][passo[0]] == 3 && visitado[passo[1]][passo[0]] == false) {
+				// incremente um score para o movimentro
+				score++;
+				// marque o caminho como visitado para nao atribuir novamente o score
+				visitado[passo[1]][passo[0]] = true;
+			}
+		}
+		return score;
+	}
 
 }
