@@ -5,10 +5,11 @@ public class AlgoritmoGenetico {
 	private double mutacaoTaxa;
 	private double cruzamentoTaxa;
 	private int numElites;
-	
+
 	protected int torneioTamanho;
 
-	public AlgoritmoGenetico(int populacaoTamanho, double mutacaoTaxa, double cruzamentoTaxa, int elitismo, int torneioTamanho) {
+	public AlgoritmoGenetico(int populacaoTamanho, double mutacaoTaxa, double cruzamentoTaxa, int elitismo,
+			int torneioTamanho) {
 		this.populacaoTamanho = populacaoTamanho;
 		this.mutacaoTaxa = mutacaoTaxa;
 		this.cruzamentoTaxa = cruzamentoTaxa;
@@ -21,17 +22,28 @@ public class AlgoritmoGenetico {
 		return populacao;
 	}
 
-	public double calcFitness(Individuo individuo) {
+	public double calcFitness(Individuo individuo, Maze maze) {
+		int[] cromossomo = individuo.getCromossomo();
+		Robo robo = new Robo(cromossomo, maze, 100);
+		robo.run();
+		int fitness = maze.scoreRota(robo.getRota());
+		individuo.setFitness(fitness);
+		return fitness;
 
-		
 	}
 
-	public void evolucaoPopulacao(Populacao populacao) {
+	public void evolucaoPopulacao(Populacao populacao, Maze maze) {
+		double populacaoFitness = 0;
 		
+		for(Individuo individuo : populacao.getPopulacao()) {
+			populacaoFitness += this.calcFitness(individuo, maze);
+		}
+		
+		populacao.setPopulacaoFitness(populacaoFitness);
 	}
 
-	public boolean condicaoFinalizar(Populacao populacao) {
-		
+	public boolean condicaoFinalizar(int geracaoAtual, int maxGeracao) {
+		return (geracaoAtual > maxGeracao);
 	}
 
 	public Individuo selecionaPais(Populacao populacao) {

@@ -2,7 +2,7 @@ package modulo_02;
 
 public class ControladorRobo {
 
-	public static int maxGeracoes = 1000;
+	public static int maxGeracao = 1000;
 	
 	public static void main(String[] args) {
 		 
@@ -35,19 +35,27 @@ public class ControladorRobo {
 		//criar populacao
 		Populacao populacao = ag.iniciarPopulacao(128);
 		
+		// calcula score da populacao
+		ag.evolucaoPopulacao(populacao, maze);
+		
+		//inicia geracao
 		int geracao = 1;
 		
 		//inicia loop genetico
-		while() {
+		while(ag.condicaoFinalizar(geracao, maxGeracao) == false) {
 			// print melhor individuo da populacao
+			Individuo melhorIndividuo = populacao.getFitnest(0);
+			System.out.println("Geração: " + geracao + " Melhor solucao (" + melhorIndividuo.getFitness() + "): " + melhorIndividuo.ToString() );
 			
 			// realizar cruzamento
 			
 			// realizar mutacao
 			
 			// calcular score da populacao/individuo
+			ag.evolucaoPopulacao(populacao, maze);
 			
 			// incremento o aumento da geracao
+			geracao++;
 		}
 		
 		// imprimir resultado alcancado
