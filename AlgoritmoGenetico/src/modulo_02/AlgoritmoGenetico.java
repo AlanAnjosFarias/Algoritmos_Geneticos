@@ -46,12 +46,25 @@ public class AlgoritmoGenetico {
 		return (geracaoAtual > maxGeracao);
 	}
 
+	
 	public Individuo selecionaPais(Populacao populacao) {
+		// Criar torneio
+		Populacao torneio = new Populacao(this.torneioTamanho);
+		
+		//adicionar individuos aleatorios ao torneio
+		populacao.embaralharPopulacao();
+		for(int i = 0; i < this.torneioTamanho; i++) {
+			Individuo indTorneio = populacao.getIndividuo(i);
+			torneio.setIndividuo(i,indTorneio);
+		}
+		
+		//retorna o melhor
+		return torneio.getFitnest(0);
 	}
 
 	public Populacao cruzamentoPopulacao(Populacao populacao) {
 	}
-
+	
 	public Populacao mutacaoPopulacao(Populacao populacao) {
 		// inicializa nova popuplacao
 		Populacao novaPopulacao = new Populacao(this.populacaoTamanho);

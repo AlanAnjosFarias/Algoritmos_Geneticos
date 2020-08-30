@@ -50,7 +50,7 @@ public class ControladorRobo {
 			// realizar cruzamento
 			
 			// realizar mutacao
-			
+			populacao = ag.mutacaoPopulacao(populacao);
 			// calcular score da populacao/individuo
 			ag.evolucaoPopulacao(populacao, maze);
 			
@@ -59,6 +59,9 @@ public class ControladorRobo {
 		}
 		
 		// imprimir resultado alcancado
+		System.out.println("Parado após " + maxGeracao + " geracoes");
+		Individuo melhorIndividuo = populacao.getFitnest(0);
+		System.out.println("Melhor solucao (" + melhorIndividuo.getFitness() + "): " + melhorIndividuo.ToString() );
 		
 
 	}
