@@ -102,7 +102,7 @@ public class Maze {
 		// loop para percorrer a rota e pontuar cada movimento
 		for (Object passoRota : rota) {
 			int passo[] = (int[]) passoRota;
-			if (this.maze[passo[1]][passo[0]] == 3 && visitado[passo[1]][passo[0]] == false) {
+			if ((this.maze[passo[1]][passo[0]] == 3 || this.maze[passo[1]][passo[0]] == 4) && visitado[passo[1]][passo[0]] == false) {
 				// incremente um score para o movimentro
 				score++;
 				// marque o caminho como visitado para nao atribuir novamente o score

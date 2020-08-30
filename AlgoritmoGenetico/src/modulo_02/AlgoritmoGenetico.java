@@ -23,11 +23,19 @@ public class AlgoritmoGenetico {
 	}
 
 	public double calcFitness(Individuo individuo, Maze maze) {
+		//obtem o cromossomo de cada robo
 		int[] cromossomo = individuo.getCromossomo();
+		
+		//cria o robo com cromossomo e avalia a rota
 		Robo robo = new Robo(cromossomo, maze, 100);
-		robo.run();
+		robo.run();	
 		int fitness = maze.scoreRota(robo.getRota());
+		
+		//teste de impressao
+		//System.out.println(robo.printRota());
+		
 		individuo.setFitness(fitness);
+		
 		return fitness;
 
 	}

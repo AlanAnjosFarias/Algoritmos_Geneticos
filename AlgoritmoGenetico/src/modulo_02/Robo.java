@@ -50,11 +50,11 @@ public class Robo {
 
 			// interrompe loop caso o robo pare de se movimentar
 			if (this.getProximaAcao() == 0) {
-				return;
+				return;				
 			}
 
-			// interrompe loop caso o robo encontro o objetivo
-			if (this.maze.getPosicao(this.xPosicao, this.yPosicao) == 4) {
+			// interrompe loop caso o robo encontre o objetivo
+			if (this.maze.getPosicao(this.xPosicao, this.yPosicao) == 4) {				
 				return;
 			}
 
@@ -85,16 +85,17 @@ public class Robo {
 		for (int valorSensor = 0; valorSensor < numAcao; valorSensor++) {
 			// obtem a acao do sensor
 			int auxAcaoSensor = 0;
-			if (palavraAcaoSensor[valorSensor*2] == 1) {
+			if (palavraAcaoSensor[valorSensor * 2] == 1) {
 				auxAcaoSensor += 2;
 			}
-			if (palavraAcaoSensor[(valorSensor*2) + 1] == 1) {
+			if (palavraAcaoSensor[(valorSensor * 2) + 1] == 1) {
 				auxAcaoSensor += 1;
 			}
 
 			// adiciona as acoes no mapeamento
 			acaoSensor[valorSensor] = auxAcaoSensor;
 		}
+		
 		return acaoSensor;
 	}
 
@@ -142,171 +143,164 @@ public class Robo {
 				}
 			}
 		}
-		
+
 		// Movimento giro horario
-		else if(this.getProximaAcao() == 2) {
-			if(Direcao.NORTE == this.direcao) {
+		else if (this.getProximaAcao() == 2) {
+			if (Direcao.NORTE == this.direcao) {
 				this.direcao = Direcao.LESTE;
-			}
-			else if(Direcao.LESTE == this.direcao) {
+			} else if (Direcao.LESTE == this.direcao) {
 				this.direcao = Direcao.SUL;
-			}
-			else if(Direcao.SUL == this.direcao) {
+			} else if (Direcao.SUL == this.direcao) {
 				this.direcao = Direcao.OESTE;
-			}
-			else if(Direcao.OESTE == this.direcao) {
+			} else if (Direcao.OESTE == this.direcao) {
 				this.direcao = Direcao.NORTE;
 			}
 		}
-		
-		// movimento firo anti-horario
-		else if(this.getProximaAcao() == 3) {
-			if(Direcao.NORTE == this.direcao) {
+
+		// movimento giro anti-horario
+		else if (this.getProximaAcao() == 3) {
+			if (Direcao.NORTE == this.direcao) {
 				this.direcao = Direcao.OESTE;
-			}
-			else if(Direcao.LESTE == this.direcao) {
+			} else if (Direcao.LESTE == this.direcao) {
 				this.direcao = Direcao.NORTE;
-			}
-			else if(Direcao.SUL == this.direcao) {
+			} else if (Direcao.SUL == this.direcao) {
 				this.direcao = Direcao.LESTE;
-			}
-			else if(Direcao.OESTE == this.direcao) {
+			} else if (Direcao.OESTE == this.direcao) {
 				this.direcao = Direcao.SUL;
 			}
 		}
+
+		// Resetando valor do sensor
+		this.valorSensor = -1;		
 		
-		//Resetando valor do sensor
-		this.valorSensor = -1;
 	}
-	
-	/**
-     * 
-     * Obtendo a proxima acao dependendo do mapeamento do sensor
-     * 
-     * @return int Proxima acao
-     */
-	public int getProximaAcao() {
-		return this.acaoSensor[this.getValorSensor()];		
-	}
-	
+
 	/**
 	 * 
-	 * Obtendo o valor do sensor. Simulacao de sinal fisico dos sensores     
-     * 
-     * @return int valor sensor
-     */
+	 * Obtendo a proxima acao dependendo do mapeamento do sensor
+	 * 
+	 * @return int Proxima acao
+	 */
+	public int getProximaAcao() {
+		return this.acaoSensor[this.getValorSensor()];
+	}
+
+	/**
+	 * 
+	 * Obtendo o valor do sensor. Simulacao de sinal fisico dos sensores
+	 * 
+	 * @return int valor sensor
+	 */
 	public int getValorSensor() {
-		//Se o valor do sensor ja foi calculado
-		if(this.valorSensor > -1) {
+		// Se o valor do sensor ja foi calculado
+		if (this.valorSensor > -1) {
 			return this.valorSensor;
 		}
-		
-		boolean sensorFrontal, sensorFrontalEsquerdo, sensorFrontalDireito, sensorEsquerdo, sensorDireito, sensorTraseiro;
+
+		boolean sensorFrontal, sensorFrontalEsquerdo, sensorFrontalDireito, sensorEsquerdo, sensorDireito,
+				sensorTraseiro;
 		sensorFrontal = sensorFrontalEsquerdo = sensorFrontalDireito = sensorEsquerdo = sensorDireito = sensorTraseiro = false;
-		
+
 		// Encontrar quais sensores estao ativados
-		if(this.getDirecao() == Direcao.NORTE) {
-			sensorFrontal = this.maze.isParede(this.xPosicao, this.yPosicao-1);
-			sensorFrontalEsquerdo = this.maze.isParede(this.xPosicao-1, this.yPosicao-1);
-			sensorFrontalDireito = this.maze.isParede(this.xPosicao+1, this.yPosicao-1);
-			sensorEsquerdo = this.maze.isParede(this.xPosicao-1, this.yPosicao);
-			sensorDireito = this.maze.isParede(this.xPosicao+1, this.yPosicao);
-			sensorTraseiro = this.maze.isParede(this.xPosicao, this.yPosicao+1);
+		if (this.getDirecao() == Direcao.NORTE) {
+			sensorFrontal = this.maze.isParede(this.xPosicao, this.yPosicao - 1);
+			sensorFrontalEsquerdo = this.maze.isParede(this.xPosicao - 1, this.yPosicao - 1);
+			sensorFrontalDireito = this.maze.isParede(this.xPosicao + 1, this.yPosicao - 1);
+			sensorEsquerdo = this.maze.isParede(this.xPosicao - 1, this.yPosicao);
+			sensorDireito = this.maze.isParede(this.xPosicao + 1, this.yPosicao);
+			sensorTraseiro = this.maze.isParede(this.xPosicao, this.yPosicao + 1);
+		} else if (this.getDirecao() == Direcao.LESTE) {
+			sensorFrontal = this.maze.isParede(this.xPosicao + 1, this.yPosicao);
+			sensorFrontalEsquerdo = this.maze.isParede(this.xPosicao + 1, this.yPosicao - 1);
+			sensorFrontalDireito = this.maze.isParede(this.xPosicao + 1, this.yPosicao + 1);
+			sensorEsquerdo = this.maze.isParede(this.xPosicao, this.yPosicao - 1);
+			sensorDireito = this.maze.isParede(this.xPosicao, this.yPosicao + 1);
+			sensorTraseiro = this.maze.isParede(this.xPosicao - 1, this.yPosicao);
+		} else if (this.getDirecao() == Direcao.SUL) {
+			sensorFrontal = this.maze.isParede(this.xPosicao, this.yPosicao + 1);
+			sensorFrontalEsquerdo = this.maze.isParede(this.xPosicao + 1, this.yPosicao + 1);
+			sensorFrontalDireito = this.maze.isParede(this.xPosicao - 1, this.yPosicao + 1);
+			sensorEsquerdo = this.maze.isParede(this.xPosicao + 1, this.yPosicao);
+			sensorDireito = this.maze.isParede(this.xPosicao - 1, this.yPosicao);
+			sensorTraseiro = this.maze.isParede(this.xPosicao, this.yPosicao - 1);
+		} else {
+			sensorFrontal = this.maze.isParede(this.xPosicao - 1, this.yPosicao);
+			sensorFrontalEsquerdo = this.maze.isParede(this.xPosicao - 1, this.yPosicao + 1);
+			sensorFrontalDireito = this.maze.isParede(this.xPosicao - 1, this.yPosicao - 1);
+			sensorEsquerdo = this.maze.isParede(this.xPosicao, this.yPosicao + 1);
+			sensorDireito = this.maze.isParede(this.xPosicao, this.yPosicao - 1);
+			sensorTraseiro = this.maze.isParede(this.xPosicao + 1, this.yPosicao);
 		}
-		else if(this.getDirecao() == Direcao.LESTE) {
-			sensorFrontal = this.maze.isParede(this.xPosicao+1, this.yPosicao);
-			sensorFrontalEsquerdo = this.maze.isParede(this.xPosicao+1, this.yPosicao-1);
-			sensorFrontalDireito = this.maze.isParede(this.xPosicao+1, this.yPosicao+1);
-			sensorEsquerdo = this.maze.isParede(this.xPosicao, this.yPosicao-1);
-			sensorDireito = this.maze.isParede(this.xPosicao, this.yPosicao+1);
-			sensorTraseiro = this.maze.isParede(this.xPosicao-1, this.yPosicao);
-		}
-		else if(this.getDirecao() == Direcao.SUL) {
-			sensorFrontal = this.maze.isParede(this.xPosicao, this.yPosicao+1);
-			sensorFrontalEsquerdo = this.maze.isParede(this.xPosicao+1, this.yPosicao+1);
-			sensorFrontalDireito = this.maze.isParede(this.xPosicao-1, this.yPosicao+1);
-			sensorEsquerdo = this.maze.isParede(this.xPosicao+1, this.yPosicao);
-			sensorDireito = this.maze.isParede(this.xPosicao-1, this.yPosicao);
-			sensorTraseiro = this.maze.isParede(this.xPosicao, this.yPosicao-1);
-		}
-		else{
-			sensorFrontal = this.maze.isParede(this.xPosicao-1, this.yPosicao);
-			sensorFrontalEsquerdo = this.maze.isParede(this.xPosicao-1, this.yPosicao+1);
-			sensorFrontalDireito = this.maze.isParede(this.xPosicao-1, this.yPosicao-1);
-			sensorEsquerdo = this.maze.isParede(this.xPosicao, this.yPosicao+1);
-			sensorDireito = this.maze.isParede(this.xPosicao, this.yPosicao-1);
-			sensorTraseiro = this.maze.isParede(this.xPosicao+1, this.yPosicao);
-		}
-		
-		//calculando valor do sensor
+
+		// calculando valor do sensor
 		int auxValorSensor = 0;
-		
-		if(sensorFrontal == true) {
+
+		if (sensorFrontal == true) {
 			auxValorSensor += 1;
 		}
-		if(sensorFrontalEsquerdo == true) {
+		if (sensorFrontalEsquerdo == true) {
 			auxValorSensor += 2;
 		}
-		if(sensorFrontalDireito == true) {
+		if (sensorFrontalDireito == true) {
 			auxValorSensor += 4;
 		}
-		if(sensorEsquerdo == true) {
+		if (sensorEsquerdo == true) {
 			auxValorSensor += 8;
 		}
-		if(sensorDireito == true) {
+		if (sensorDireito == true) {
 			auxValorSensor += 16;
 		}
-		if(sensorTraseiro == true) {
+		if (sensorTraseiro == true) {
 			auxValorSensor += 32;
 		}
-		
+
 		this.valorSensor = auxValorSensor;
-		
+
 		return auxValorSensor;
 	}
-	
+
 	/**
-     * 
-     * Obtendo a posicao do robo
-     * 
-     * @return int[] Array com a posicao do robo
-     */
+	 * 
+	 * Obtendo a posicao do robo
+	 * 
+	 * @return int[] Array com a posicao do robo
+	 */
 	public int[] getPosicao() {
-		return new int[] {this.xPosicao, this.yPosicao};
+		return new int[] { this.xPosicao, this.yPosicao };
 	}
-	
+
 	/**
-     * Obtem a direcao do robo
-     *  
-     * @return direcao do robo
-     */
+	 * Obtem a direcao do robo
+	 * 
+	 * @return direcao do robo
+	 */
 	private Direcao getDirecao() {
 		return this.direcao;
 	}
-	
+
 	/**
 	 * Retorna a rota completa do robo ao redor do labirinto/maze
 	 * 
-     * 
-     * @return ArrayList<int> rota do robo
-     */
-	public ArrayList<int[]> getRota(){
+	 * 
+	 * @return ArrayList<int> rota do robo
+	 */
+	public ArrayList<int[]> getRota() {
 		return this.rota;
 	}
-	
+
 	/**
-     * Retorna a rota completa do robo em formato de impressao
-     * 
-     * @return String rota do robo
-     */
+	 * Retorna a rota completa do robo em formato de impressao
+	 * 
+	 * @return String rota do robo
+	 */
 	public String printRota() {
 		String auxRota = "";
-		
-		for(Object passoRota : this.rota) {
+
+		for (Object passoRota : this.rota) {
 			int auxPasso[] = (int[]) passoRota;
-			auxRota += "{" + auxPasso[0] + "," + auxPasso[1] + "}"; 
+			auxRota += "{" + auxPasso[0] + "," + auxPasso[1] + "}";
 		}
+		
 		return auxRota;
 	}
-
 }

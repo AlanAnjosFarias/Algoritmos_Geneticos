@@ -19,18 +19,18 @@ public class ControladorRobo {
 		
 		Maze maze = new Maze(new int[][] {
 			{ 0, 0, 0, 0, 1, 0, 1, 3, 2 }, 
-			{ 1, 0, 1, 1, 1, 0, 1, 3, 1 },
-			{ 1, 0, 0, 1, 3, 3, 3, 3, 1 }, 
-			{ 3, 3, 3, 1, 3, 1, 1, 0, 1 }, 
-			{ 3, 1, 3, 3, 3, 1, 1, 0, 0 },
-			{ 3, 3, 1, 1, 1, 1, 0, 1, 1 }, 
-			{ 1, 3, 0, 1, 3, 3, 3, 3, 3 }, 
-			{ 0, 3, 1, 1, 3, 1, 0, 1, 3 },
+			{ 1, 0, 1, 1, 1, 1, 1, 3, 1 },
+			{ 1, 0, 0, 1, 3, 3, 1, 3, 1 }, 
+			{ 0, 0, 0, 1, 3, 3, 3, 3, 1 }, 
+			{ 0, 1, 0, 1, 3, 1, 1, 1, 0 },
+			{ 0, 0, 1, 1, 3, 1, 1, 1, 1 }, 
+			{ 1, 0, 0, 1, 3, 3, 3, 3, 3 }, 
+			{ 0, 1, 1, 1, 1, 1, 0, 1, 3 },
 			{ 1, 3, 3, 3, 3, 1, 1, 1, 4 } 
 		});
 		
 		//criar algoritmo genetico
-		AlgoritmoGenetico ag = new AlgoritmoGenetico(200, 0.05, 0.9, 2, 10);
+		AlgoritmoGenetico ag = new AlgoritmoGenetico(200, 0.05, 0.9, 5, 10);
 		
 		//criar populacao
 		Populacao populacao = ag.iniciarPopulacao(128);
@@ -46,6 +46,7 @@ public class ControladorRobo {
 			// print melhor individuo da populacao
 			Individuo melhorIndividuo = populacao.getFitnest(0);
 			System.out.println("Geração: " + geracao + " Melhor solucao (" + melhorIndividuo.getFitness() + "): " + melhorIndividuo.ToString() );
+			
 			
 			// realizar cruzamento
 			populacao = ag.cruzamentoPopulacao(populacao);
