@@ -32,7 +32,7 @@ public class AlgoritmoGenetico {
 		int fitness = maze.scoreRota(robo.getRota());
 		
 		//teste de impressao de rota
-		//System.out.println(robo.printRota());
+		System.out.println(robo.printRota());
 		
 		individuo.setFitness(fitness);
 		

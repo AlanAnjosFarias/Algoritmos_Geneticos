@@ -18,15 +18,16 @@ public class ControladorRobo {
 		 */
 		
 		Maze maze = new Maze(new int[][] {
-			{ 0, 0, 0, 0, 1, 0, 1, 3, 2 }, 
-			{ 1, 0, 1, 1, 1, 1, 1, 3, 1 },
-			{ 1, 0, 0, 1, 3, 3, 1, 3, 1 }, 
-			{ 0, 0, 0, 1, 3, 3, 3, 3, 1 }, 
-			{ 0, 1, 0, 1, 3, 1, 1, 1, 0 },
-			{ 0, 0, 1, 1, 3, 1, 1, 1, 1 }, 
-			{ 1, 0, 0, 1, 3, 3, 3, 3, 3 }, 
-			{ 0, 1, 1, 1, 1, 1, 0, 1, 3 },
-			{ 1, 3, 3, 3, 3, 1, 1, 1, 4 } 
+			{ 0, 0, 0, 0, 1, 0, 1, 3, 2, 3}, 
+			{ 1, 0, 1, 1, 1, 1, 1, 1, 1, 3},
+			{ 1, 0, 0, 3, 3, 3, 1, 3, 1, 3}, 
+			{ 0, 0, 0, 3, 1, 3, 3, 3, 1, 3}, 
+			{ 0, 1, 0, 3, 3, 1, 1, 1, 0, 3},
+			{ 0, 0, 1, 1, 3, 1, 1, 1, 1, 3}, 
+			{ 1, 0, 0, 1, 3, 3, 3, 3, 1, 3}, 
+			{ 0, 1, 1, 1, 1, 1, 0, 1, 3, 3},
+			{ 1, 3, 3, 3, 3, 1, 1, 4, 1, 3},
+			{ 0, 1, 0, 3, 3, 1, 1, 3, 3, 3}
 		});
 		
 		//criar algoritmo genetico
@@ -45,7 +46,7 @@ public class ControladorRobo {
 		while(ag.condicaoFinalizar(geracao, maxGeracao) == false) {
 			// print melhor individuo da populacao
 			Individuo melhorIndividuo = populacao.getFitnest(0);
-			System.out.println("Geração: " + geracao + " Melhor solucao (" + melhorIndividuo.getFitness() + "): " + melhorIndividuo.ToString() );
+			//System.out.println("Geração: " + geracao + " Melhor solucao (" + melhorIndividuo.getFitness() + "): " + melhorIndividuo.ToString() );
 			
 			
 			// realizar cruzamento

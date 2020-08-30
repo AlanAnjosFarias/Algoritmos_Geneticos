@@ -53,7 +53,7 @@ public class Maze {
 		if (x < 0 || y < 0 || x >= this.maze.length || y >= this.maze[0].length) {
 			return 1;
 		}
-		return this.maze[y][x];
+		return this.maze[x][y];
 	}
 
 	/**
@@ -66,7 +66,7 @@ public class Maze {
 	 * @return boolean
 	 */
 	public boolean isParede(int x, int y) {
-		return (this.getPosicao(x, y) == 1);
+		return (this.getPosicao(y, x) == 1);
 	}
 
 	/**
