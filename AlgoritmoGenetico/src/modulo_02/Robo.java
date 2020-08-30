@@ -284,5 +284,29 @@ public class Robo {
 		return this.direcao;
 	}
 	
+	/**
+	 * Retorna a rota completa do robo ao redor do labirinto/maze
+	 * 
+     * 
+     * @return ArrayList<int> rota do robo
+     */
+	public ArrayList<int[]> getRota(){
+		return this.rota;
+	}
+	
+	/**
+     * Retorna a rota completa do robo em formato de impressao
+     * 
+     * @return String rota do robo
+     */
+	public String printRota() {
+		String auxRota = "";
+		
+		for(Object passoRota : this.rota) {
+			int auxPasso[] = (int[]) passoRota;
+			auxRota += "{" + auxPasso[0] + "," + auxPasso[1] + "}"; 
+		}
+		return auxRota;
+	}
 
 }
