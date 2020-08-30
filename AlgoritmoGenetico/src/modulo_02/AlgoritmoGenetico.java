@@ -5,12 +5,15 @@ public class AlgoritmoGenetico {
 	private double mutacaoTaxa;
 	private double cruzamentoTaxa;
 	private int numElites;
+	
+	protected int torneioTamanho;
 
-	public AlgoritmoGenetico(int populacaoTamanho, double mutacaoTaxa, double cruzamentoTaxa, int elitismo) {
+	public AlgoritmoGenetico(int populacaoTamanho, double mutacaoTaxa, double cruzamentoTaxa, int elitismo, int torneioTamanho) {
 		this.populacaoTamanho = populacaoTamanho;
 		this.mutacaoTaxa = mutacaoTaxa;
 		this.cruzamentoTaxa = cruzamentoTaxa;
 		this.numElites = elitismo;
+		this.torneioTamanho = torneioTamanho;
 	}
 
 	public Populacao iniciarPopulacao(int cromossomoTamanho) {
