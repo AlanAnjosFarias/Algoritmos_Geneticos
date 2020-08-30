@@ -63,6 +63,42 @@ public class AlgoritmoGenetico {
 	}
 
 	public Populacao cruzamentoPopulacao(Populacao populacao) {
+		//cria nova populacao gerada apos cruzamento
+		Populacao novaPopulacao = new Populacao(populacao.populacaoTamanho());
+		
+		//loop 
+		for(int indexPopulacao = 0; indexPopulacao < populacao.populacaoTamanho(); indexPopulacao++) {
+			Individuo pai = populacao.getFitnest(indexPopulacao);
+			
+			//aplicar cruzamento para essse individuo?
+			if(this.cruzamentoTaxa > Math.random() && indexPopulacao >= this.numElites) {
+				// gere os filhos				
+				Individuo filho = new Individuo(pai.getCromossomoTamanho());
+				
+				// encontre a mae
+				Individuo mae = this.selecionaPais(populacao);
+				
+				// Obter um ponto de troca aleatorio
+				int pontoTroca = (int) (Math.random() * (pai.getCromossomoTamanho() +1));
+				
+				// percorra os genoma
+				for(int indexGene = 0; indexGene < pai.getCromossomoTamanho(); indexGene++) {
+					//use metado dos genes do pai e metade da mae
+					if(indexGene < pontoTroca) {
+						filho.setGene(indexGene, pai.getGene(indexGene));
+					}else {
+						filho.setGene(indexGene, mae.getGene(indexGene));
+					}					
+				}
+				
+				//adiciona o filho gerado a nova populacao
+				novaPopulacao.setIndividuo(indexPopulacao, filho);
+			}else {
+				//adiciona o pai a nova popupacao sem cruzamento
+				novaPopulacao.setIndividuo(indexPopulacao, pai);
+			}
+		}
+		return novaPopulacao;
 	}
 	
 	public Populacao mutacaoPopulacao(Populacao populacao) {
