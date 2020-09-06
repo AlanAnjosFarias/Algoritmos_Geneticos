@@ -8,16 +8,7 @@ public class Individuo {
 		this.cromossomo = cromossomo;
 	}
 
-	public Individuo(int cromossomoTamanho) {
-		this.cromossomo = new int[cromossomoTamanho];
-		for (int gene = 0; gene < cromossomoTamanho; gene++) {
-			if (0.5 < Math.random()) {
-				this.setGene(gene, 1);
-			} else {
-				this.setGene(gene, 0);
-			}
-		}
-	}
+	
 
 	public int[] getCromossomo() {
 		return this.cromossomo;
