@@ -57,5 +57,14 @@ public class Individuo {
 		}
 		return saida;
 	}
+	
+	public boolean geneContido(int gene) {
+		for(int i = 0; i < this.getCromossomoTamanho(); i++) {
+			if(this.cromossomo[i] == gene) {
+				return true;
+			}
+		}
+		return false;
+	}
 
 }

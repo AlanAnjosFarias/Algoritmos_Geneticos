@@ -32,7 +32,9 @@ public class TSM {
 			// imprimir o melhor individuo da populacao
 			Rota rota = new Rota(populacao.getFitnest(0), cidades);
 			System.out.println("G" + geracaoAtual + " melhor distancia: " + rota.getDistancia());
+			
 			// Aplicar cruzamento
+			populacao = ag.cruzamentoPopulacao(populacao);
 			
 			// Aplicar mutacao
 			

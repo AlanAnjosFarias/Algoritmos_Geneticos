@@ -1,5 +1,7 @@
 package modulo_03;
 
+import java.util.Arrays;
+
 public class AlgoritmoGenetico {
 	private int populacaoTamanho;
 	private double mutacaoTaxa;
@@ -67,6 +69,63 @@ public class AlgoritmoGenetico {
 	public Populacao cruzamentoPopulacao(Populacao populacao) {
 		// cria nova populacao gerada apos cruzamento
 		Populacao novaPopulacao = new Populacao(populacao.populacaoTamanho());
+		
+		//
+		for(int indexPop = 0; indexPop < populacao.populacaoTamanho(); indexPop++) {
+			// obtendo pai
+			Individuo pai = populacao.getFitnest(indexPop);
+			
+			// aplicando cruzamento individual
+			if(this.cruzamentoTaxa > Math.random() && indexPop >= this.numElites) {
+				// encontre a mae com modo de selecao torneio
+				Individuo mae = this.selecionaPais(populacao);
+				
+				//criando cromossomo em branco do filho
+				int cromossomoFilho[] = new int[pai.getCromossomoTamanho()];
+				Arrays.fill(cromossomoFilho, -1);
+				Individuo filho = new Individuo(cromossomoFilho);
+				
+				//Obtendo as posicoes dos subset dos cromossomos do pai
+				int subset1 = (int)(Math.random())*pai.getCromossomoTamanho();
+				int subset2 = (int)(Math.random())*pai.getCromossomoTamanho();
+				
+				// mazendo os incios e fim do cromossomo
+				final int inicioSubset = Math.min(subset1, subset2);
+				final int fimSubset = Math.max(subset1, subset2);
+				
+				//loop para addionar os subset ao torneios do pai para os filho
+				for(int i = inicioSubset; i < fimSubset; i++) {
+					filho.setGene(i, pai.getGene(i));
+				}
+				
+				//loop para percorrer mae
+				for(int i = 0; i < mae.getCromossomoTamanho(); i++) {
+					int geneMae = 1 + fimSubset;
+					if(geneMae >= mae.getCromossomoTamanho()) {
+						geneMae -= mae.getCromossomoTamanho();
+					}
+					
+					// se o filho ainda nao visitou a cidade
+					if(filho.geneContido(mae.getGene(geneMae)) ==  false) {
+						//loop para encontrar uma posicao vazia no cromossomo
+						for(int ii = 0; ii < filho.getCromossomoTamanho(); ii++) {
+							// se encontrar um espaco adicione a cidade
+							if(filho.getGene(ii) == -1) {
+								filho.setGene(ii, mae.getGene(geneMae));
+								break;
+							}
+						}
+					}
+				}
+				
+				// adicione o filho
+				novaPopulacao.setIndividuo(indexPop, filho);
+			} else {
+				//add individuo a populcao sem cruzamento
+				novaPopulacao.setIndividuo(indexPop, pai);
+			}
+			
+		}
 
 		
 		return novaPopulacao;
