@@ -134,8 +134,36 @@ public class AlgoritmoGenetico {
 	public Populacao mutacaoPopulacao(Populacao populacao) {
 		// inicializa nova popuplacao
 		Populacao novaPopulacao = new Populacao(this.populacaoTamanho);
-
 		
+		// percorrer individuos 
+		for(int indexPop = 0; indexPop < populacao.populacaoTamanho(); indexPop++) {
+			Individuo auxIndividuo = populacao.getFitnest(indexPop);
+			
+			// pula os elites
+			if(indexPop >= this.numElites) {
+				for(int indexGene = 0; indexGene < auxIndividuo.getCromossomoTamanho(); indexGene++) {
+					// verifica se o gene ira sofrer mutacao
+					if(this.mutacaoTaxa > Math.random()) {
+						// obtem a nova posicao do gene
+						int novoGenePos = (int) (Math.random() * auxIndividuo.getCromossomoTamanho());
+						
+						//  gene para troca
+						int gene1 = auxIndividuo.getGene(novoGenePos);
+						int gene2 = auxIndividuo.getGene(indexGene);
+						
+						// realiza troca
+						auxIndividuo.setGene(indexGene, gene1);
+						auxIndividuo.setGene(novoGenePos, gene2);
+						
+					}
+				}
+			}
+			
+			// adciona individuo a populacao
+			novaPopulacao.setIndividuo(indexPop, auxIndividuo);
+		}
+
+		//retorno populacao com mutacao
 		return novaPopulacao;
 	}
 

@@ -1,7 +1,7 @@
 package modulo_03;
 
 public class TSM {
-	public static int maxGeracoes = 3000;
+	public static int maxGeracoes = 10000;
 	
 	public static void main(String[] args) {
 		int numCidades = 100;
@@ -37,6 +37,7 @@ public class TSM {
 			populacao = ag.cruzamentoPopulacao(populacao);
 			
 			// Aplicar mutacao
+			populacao = ag.mutacaoPopulacao(populacao);
 			
 			// Calcular Evolucao da populacao
 			ag.evolucaoPopulacao(populacao, cidades);
