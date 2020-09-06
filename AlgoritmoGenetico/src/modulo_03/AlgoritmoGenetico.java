@@ -86,8 +86,8 @@ public class AlgoritmoGenetico {
 				Individuo filho = new Individuo(cromossomoFilho);
 				
 				//Obtendo as posicoes dos subset dos cromossomos do pai
-				int subset1 = (int)(Math.random())*pai.getCromossomoTamanho();
-				int subset2 = (int)(Math.random())*pai.getCromossomoTamanho();
+				int subset1 = (int)(Math.random() * pai.getCromossomoTamanho());
+				int subset2 = (int)(Math.random() * pai.getCromossomoTamanho());
 				
 				// mazendo os incios e fim do cromossomo
 				final int inicioSubset = Math.min(subset1, subset2);
@@ -100,7 +100,7 @@ public class AlgoritmoGenetico {
 				
 				//loop para percorrer mae
 				for(int i = 0; i < mae.getCromossomoTamanho(); i++) {
-					int geneMae = 1 + fimSubset;
+					int geneMae = i + fimSubset;
 					if(geneMae >= mae.getCromossomoTamanho()) {
 						geneMae -= mae.getCromossomoTamanho();
 					}

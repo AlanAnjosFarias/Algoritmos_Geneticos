@@ -1,5 +1,6 @@
 package modulo_03;
 
+
 public class Rota {
 	private Cidade rota[];
 	private double distancia = 0;
@@ -12,7 +13,8 @@ public class Rota {
 		this.rota = new Cidade[cidades.length];
 		for(int indexGene = 0; indexGene < cromossomo.length; indexGene++) {
 			this.rota[indexGene] = cidades[cromossomo[indexGene]];
-		}
+		}	
+		
 	}
 	
 	public double getDistancia() {
