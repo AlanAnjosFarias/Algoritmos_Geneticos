@@ -138,7 +138,7 @@ public class QuadroAula {
 		int cromossomoPos = 0;
 		int indexAula = 0;
 		
-		for(Grupo grupo : this.getGrupoComoArray()) {
+		for(Grupo grupo : this.getGruposComoArray() ) {
 			int auxModulosID[] = grupo.getModulosID();
 			for(int auxModuloID : auxModulosID) {
 				aulas[indexAula] = new Aula(indexAula, grupo.getGrupoID(), auxModuloID);
