@@ -8,7 +8,17 @@ public class Individuo {
 		this.cromossomo = cromossomo;
 	}
 
-	
+	public Individuo(int cromossomoTamanho) {
+		//criando individuo
+		int[] individuo;
+		individuo = new int[cromossomoTamanho];
+		
+		for(int gene = 0; gene < cromossomoTamanho; gene++) {
+			individuo[gene] = gene;
+		}
+		
+		this.cromossomo = individuo;			
+	}
 
 	public int[] getCromossomo() {
 		return this.cromossomo;

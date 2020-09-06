@@ -22,15 +22,27 @@ public class AlgoritmoGenetico {
 		return populacao;
 	}
 
-	public double calcFitness(Individuo individuo) {
+	public double calcFitness(Individuo individuo, Cidade cidades[]) {
+		// obtendo fitness
+		Rota rota = new Rota(individuo, cidades);
+		double fitness = 1 / rota.getDistancia();
 		
+		//armazenar valor de fitness
+		individuo.setFitness(fitness);
 		
 		return fitness;
-
 	}
 
-	public void evolucaoPopulacao(Populacao populacao) {
+	public void evolucaoPopulacao(Populacao populacao, Cidade cidades[]) {
+		double populacaoFitness = 0;
 		
+		// evoluir populacao calculando fitness
+		for(Individuo auxIndividuo : populacao.getPopulacao()) {
+			populacaoFitness += this.calcFitness(auxIndividuo, cidades);
+		}
+		
+		double mediaFit = populacaoFitness / populacao.populacaoTamanho();
+		populacao.setPopulacaoFitness(mediaFit);
 	}
 
 	public boolean condicaoFinalizar(int geracaoAtual, int maxGeracao) {

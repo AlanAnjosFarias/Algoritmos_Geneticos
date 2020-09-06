@@ -9,7 +9,7 @@ public class Cidade {
 		this.y = y;
 	}
 	
-	public double distancia(Cidade cidade) {
+	public double distanciaDe(Cidade cidade) {
 		//referencia das posicoes das cidades
 		double deltaX = Math.pow((cidade.getX() - this.getX()), 2);
 		double deltaY = Math.pow((cidade.getY() - this.getY()), 2);
