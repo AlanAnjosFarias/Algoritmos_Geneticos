@@ -18,7 +18,7 @@ public class TSM {
 		AlgoritmoGenetico ag = new AlgoritmoGenetico(100, 0.001, 0.9, 2, 5);
 		
 		//inicializar populacao
-		Populacao populacao = new ag.initPopulacao(cidades.length);
+		Populacao populacao = ag.iniciarPopulacao(cidades.length);
 		
 		//Evoluir populacao
 		ag.evolucaoPopulacao(populacao, cidades);
@@ -44,7 +44,9 @@ public class TSM {
 		}
 		
 		// Apresentar resultados
-		
+		System.out.println("Parado após " + maxGeracoes + " geracoes.");
+		Rota rota = new Rota(populacao.getFitnest(0), cidades);
+		System.out.println("Melhor distancia: " + rota.getDistancia());
 
 	}
 
