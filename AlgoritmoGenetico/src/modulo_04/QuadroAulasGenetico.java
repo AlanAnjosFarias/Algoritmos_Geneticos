@@ -19,7 +19,7 @@ public class QuadroAulasGenetico {
 		int geracaoAtual = 1;
 		
 		//inicia loop de evolucao
-		while(ag.condicaoFinalizar(geracaoAtual, 1000) == false && ag.condicaoFinalizar(populacao)) {
+		while(ag.condicaoFinalizar(geracaoAtual, 1000) == false && ag.condicaoFinalizar(populacao) == false) {
 			//print fitness
 			System.out.println("G" + geracaoAtual + " Melhor fitness: " + populacao.getFitnest(0).getFitness()); 
 			
@@ -55,7 +55,9 @@ public class QuadroAulasGenetico {
 			System.out.println("Grupo: " + quadroAula.getGrupo(melhorAula.getGrupoID()).getGrupoID());
 			System.out.println("Sala: " + quadroAula.getSala(melhorAula.getSalaID()).getSalaNumero());
 			System.out.println("Professor: " + quadroAula.getProfessor(melhorAula.getProfessorID()).getProfessorNome());
-			System.out.println("Horario");
+			System.out.println("Horario: " + quadroAula.getHoraUtil(melhorAula.getHoraUtilID()).getHoraUtil());
+			System.out.println("-----");			
+			indexAula++;
 		}
 	}
 	
