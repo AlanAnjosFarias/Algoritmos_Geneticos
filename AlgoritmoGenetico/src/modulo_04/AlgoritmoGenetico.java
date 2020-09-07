@@ -128,14 +128,14 @@ public class AlgoritmoGenetico {
 		for(int indexPopulacao = 0; indexPopulacao < populacao.populacaoTamanho(); indexPopulacao++) {
 			Individuo individuo = populacao.getFitnest(indexPopulacao);
 			
-			//cria um individuo aleatorio to trocar os genes
+			//cria um individuo aleatorio para trocar os genes
 			Individuo individuoAleatorio = new Individuo(quadroAula);
 			
 			//loop pelos genes dos individuos
 			for(int indexGene = 0; indexGene < individuo.getCromossomoTamanho(); indexGene++) {
 				//pula mutacao no caso do individuo ser Elite
 				if(indexPopulacao > this.numElites) {
-					//verifica se o gene ser mutado
+					//verifica se o gene sera mutado
 					if(this.mutacaoTaxa > Math.random()) {
 						//troca para o novo gene
 						individuo.setGene(indexGene, individuoAleatorio.getGene(indexGene));

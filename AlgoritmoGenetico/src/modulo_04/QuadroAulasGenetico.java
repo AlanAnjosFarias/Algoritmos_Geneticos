@@ -14,6 +14,7 @@ public class QuadroAulasGenetico {
 		
 		
 		//evol populacao
+		ag.evolucaoPopulacao(populacao, quadroAula);
 		
 		//inicia geracao
 		int geracaoAtual = 1;
@@ -28,6 +29,7 @@ public class QuadroAulasGenetico {
 			populacao = ag.cruzamentoPopulacao(populacao);
 			
 			//aplica mutacao
+			populacao = ag.mutacaoPopulacao(populacao, quadroAula);
 			
 			
 			// aplica evol
@@ -105,7 +107,7 @@ public class QuadroAulasGenetico {
 		// configurar os grupos de estudantes e suas disciplinas
 		quadroAula.addGrupo(1, 10, new int[] {1, 3, 4});
 		quadroAula.addGrupo(2, 30, new int[] {2, 3, 5, 6});
-		quadroAula.addGrupo(3, 18, new int[] {2, 4, 5});
+		quadroAula.addGrupo(3, 18, new int[] {3, 4, 5});
 		quadroAula.addGrupo(4, 25, new int[] {1, 4});
 		quadroAula.addGrupo(5, 20, new int[] {2, 3, 5});
 		quadroAula.addGrupo(6, 22, new int[] {1, 4, 5});
