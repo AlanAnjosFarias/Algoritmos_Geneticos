@@ -10,6 +10,7 @@ public class QuadroAulasGenetico {
 		AlgoritmoGenetico ag = new AlgoritmoGenetico(100, 0.01, 0.9, 2, 5);
 		
 		//inicializa populacao
+		Populacao populacao = ag.inicializarPopulacao(quadroAula);
 		
 		
 		//evol populacao
@@ -18,9 +19,10 @@ public class QuadroAulasGenetico {
 		int geracaoAtual = 1;
 		
 		//inicia loop de evolucao
-		while(false) {
+		while(true) {
 			//print fitness
-			System.out.println("G" + geracaoAtual + " Melhor fitness: " + populacao.getFittest(0).getFitness());
+			System.out.println("G" + geracaoAtual + " Melhor fitness: " + populacao.getFitnest(0).getFitness()); 
+			
 			
 			//aplica cruzamento
 			populacao = ag.cruzamentoPopulacao(populacao);

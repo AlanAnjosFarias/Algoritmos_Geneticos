@@ -2,8 +2,6 @@ package modulo_04;
 
 import java.util.Arrays;
 
-import modulo_02.Individuo;
-import modulo_02.Populacao;
 
 public class AlgoritmoGenetico {
 	private int populacaoTamanho;
@@ -21,13 +19,30 @@ public class AlgoritmoGenetico {
 		this.numElites = elitismo;
 		this.torneioTamanho = torneioTamanho;
 	}
-
-	// inicar populacao
-	//public Populacao iniciarPopulacao(int cromossomoTamanho) 
 	
+	// inicializar populacao
+	public Populacao inicializarPopulacao(QuadroAula quadroAula) {
+		// inicializa populacao
+		Populacao populacao = new Populacao(this.populacaoTamanho, quadroAula);
+		return populacao;
+	}	
 
 	//fitness
-	//public double calcFitness(Individuo individuo, Cidade cidades[]) 
+	public double calcFitness(Individuo individuo, QuadroAula quadroAula) {
+		
+		// criar um novo quadro de aula clonando de um existente
+		QuadroAula quadroAulaClone = new QuadroAula(quadroAula);
+		quadroAulaClone.criarAula(individuo);
+		
+		//calcular fitness
+		int confrontos = quadroAulaClone.calcConfrontos();
+		double fitness = 1 / ((double) (confrontos + 1));
+		
+		individuo.setFitness(fitness);
+		
+		return fitness;
+		
+	}
 
 	//evolucao populacao
 	//public void evolucaoPopulacao(Populacao populacao, Cidade cidades[])

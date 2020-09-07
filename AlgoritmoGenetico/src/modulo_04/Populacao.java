@@ -8,16 +8,33 @@ public class Populacao {
 	private Individuo populacao[];
 	private double populacaoFitness = -1;
 
+	//construtor #1
 	public Populacao(int populacaoTamanho) {
 		this.populacao = new Individuo[populacaoTamanho];
 	}
 
+	//construtor #2
 	public Populacao(int populacaoTamanho, int cromossomoTamanho) {
 		this.populacao = new Individuo[populacaoTamanho];
 
 		for (int individuoNum = 0; individuoNum < populacaoTamanho; individuoNum++) {
 			Individuo candidato = new Individuo(cromossomoTamanho);
 			this.populacao[individuoNum] = candidato;
+		}
+	}
+	
+	//construtor #3
+	public Populacao(int populacaoTamanho, QuadroAula quadroAula) {
+		//inicializa populacao
+		this.populacao = new Individuo[populacaoTamanho];
+		
+		//loop atraves do tamanho da populacao
+		for(int indexIndividuo = 0; indexIndividuo < populacaoTamanho; indexIndividuo++) {
+			//cria individuo
+			Individuo individuo = new Individuo(quadroAula);
+			
+			// add individuo a populacao
+			this.populacao[indexIndividuo] = individuo;
 		}
 	}
 
