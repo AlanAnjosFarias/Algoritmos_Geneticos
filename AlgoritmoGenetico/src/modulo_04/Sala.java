@@ -11,7 +11,7 @@ public class Sala {
 		this.capacidade = capacidade;
 	}
 	
-	public int getSalaId() {
+	public int getSalaID() {
 		return this.salaID;
 	}
 	

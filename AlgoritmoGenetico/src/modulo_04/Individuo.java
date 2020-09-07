@@ -4,10 +4,12 @@ public class Individuo {
 	private int[] cromossomo;
 	private double fitness = -1;
 
+	//construtor #1
 	public Individuo(int[] cromossomo) {
 		this.cromossomo = cromossomo;
 	}
 
+	//construtor #2
 	public Individuo(int cromossomoTamanho) {
 		//criando individuo
 		int[] individuo;
@@ -19,6 +21,42 @@ public class Individuo {
 		
 		this.cromossomo = individuo;			
 	}
+	
+	//construtor #3
+	public Individuo(QuadroAula quadroAula) {
+		int numAulas = quadroAula.getNumAulas();
+		
+		// 1 gene para sala, 1 gene para horario, 1 gene para professor
+		int cromossomoTamanho = numAulas * 3;
+		
+		//criar individuos aleatorios
+		int novoCromossomo[] = new int[cromossomoTamanho];
+		int indexCromossomo = 0;
+		
+		//loop  pelos grupos
+		for(Grupo grupo : quadroAula.getGruposComoArray()) {
+			// loop pelos modulos
+			for(int moduloID : grupo.getModulosID()) {
+				//add horario aleatorio
+				int horaUtilID = quadroAula.getHoraUtilAleatoria().getHoraUtilID();
+				novoCromossomo[indexCromossomo] = horaUtilID;
+				indexCromossomo++;
+				
+				//add sala aleatoria
+				int salaID = quadroAula.getSalaAleatoria().getSalaID();
+				novoCromossomo[indexCromossomo] = salaID;
+				indexCromossomo++;
+				
+				//add professor aleatorio
+				ModuloCurso modulo = quadroAula.getModuloCurso(moduloID);
+				novoCromossomo[indexCromossomo] = modulo.getAleatorioProfessorID();
+				indexCromossomo++;
+			}
+		}
+		
+		this.cromossomo = novoCromossomo;
+	}
+	
 
 	public int[] getCromossomo() {
 		return this.cromossomo;
