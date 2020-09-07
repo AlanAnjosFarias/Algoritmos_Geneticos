@@ -58,9 +58,14 @@ public class AlgoritmoGenetico {
 	}
 
 	
-	//verificar finalizacao
+	//verificar finalizacao #1
 	public boolean condicaoFinalizar(int geracaoAtual, int maxGeracao) {
 		return (geracaoAtual > maxGeracao);
+	}
+	
+	//verificar finalizacao #2
+	public boolean condicaoFinalizar(Populacao populacao) {
+		return populacao.getFitnest(0).getFitness() == 1.0;
 	}
 
 	public Individuo selecionaPais(Populacao populacao) {
