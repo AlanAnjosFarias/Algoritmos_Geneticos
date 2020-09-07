@@ -34,23 +34,27 @@ public class QuadroAula {
 		this.horasUtil = clonavel.getHorasUtil();
 	}
 	
-	private HashMap<Integer, Sala> getSalas(){
+	public HashMap<Integer, Sala> getSalas(){
 		return this.salas;
 	}
 	
-	private HashMap<Integer, Professor> getProfessores(){
+	//OK
+	public HashMap<Integer, Professor> getProfessores(){
 		return this.professores;
 	}
 	
-	private HashMap<Integer, ModuloCurso> getModulosCurso(){
+	//OK
+	public HashMap<Integer, ModuloCurso> getModulosCurso(){
 		return this.modulosCurso;
 	}
 	
-	private HashMap<Integer, Grupo> getGrupos(){
+	//OK
+	public HashMap<Integer, Grupo> getGrupos(){
 		return this.grupos;
 	}
 	
-	private HashMap<Integer, HoraUtil> getHorasUtil(){
+	//OK
+	public HashMap<Integer, HoraUtil> getHorasUtil(){
 		return this.horasUtil;
 	}
 	
@@ -62,7 +66,8 @@ public class QuadroAula {
 	 * @param salaName
 	 * @param capacidade
 	 * 
-	 */	
+	 */
+	//OK
 	public void addSala(int salaID, String salaNome, int capacidade) {
 		this.salas.put(salaID, new Sala(salaID, salaNome, capacidade));
 	}
@@ -76,6 +81,7 @@ public class QuadroAula {
 	 * 
 	 * 
 	 */	
+	//OK
 	public void addProfessor(int professorID, String professorNome) {
 		this.professores.put(professorID, new Professor(professorID, professorNome));
 	}
@@ -90,6 +96,7 @@ public class QuadroAula {
 	 * @param professoresID
 	 * 
 	 */
+	//OK
 	public void addModulo(int moduloID, String moduloCodigo, String modulo, int professoresID[]) {
 		this.modulosCurso.put(moduloID, new ModuloCurso(moduloID, moduloCodigo, modulo, professoresID));
 	}
@@ -104,6 +111,7 @@ public class QuadroAula {
 	 *
 	 * 
 	 */
+	//OK
 	public void addGrupo(int grupoID, int grupoTamanho, int modulosID[]) {
 		this.grupos.put(grupoID, new Grupo(grupoID, grupoTamanho, modulosID));
 		this.numAulas = 0;
@@ -118,6 +126,7 @@ public class QuadroAula {
 	 *
 	 * 
 	 */
+	//OK
 	public void addHoraUtil(int horaUtilID, String horaUtil) {
 		this.horasUtil.put(horaUtilID, new HoraUtil(horaUtilID, horaUtil));
 	}
@@ -129,6 +138,7 @@ public class QuadroAula {
 	 * @param individuo
 	 *  
 	 */
+	//OK
 	public void criarAula(Individuo individuo) {
 		//inicia aula
 		Aula aulas[] = new Aula[this.getNumAulas()];
@@ -169,6 +179,7 @@ public class QuadroAula {
 	 * @return room
 	 *  
 	 */
+	//OK
 	public Sala getSala(int salaID) {
 		if(!this.salas.containsKey(salaID)) {
 			System.out.println("Salas não contem a chave " + salaID );

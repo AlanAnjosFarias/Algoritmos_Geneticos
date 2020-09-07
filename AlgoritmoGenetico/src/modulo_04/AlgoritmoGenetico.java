@@ -36,7 +36,7 @@ public class AlgoritmoGenetico {
 		
 		//calcular fitness
 		int confrontos = quadroAulaClone.calcConfrontos();
-		double fitness = 1 / ((double) (confrontos + 1));
+		double fitness = 1 / (double) (confrontos + 1);
 		
 		individuo.setFitness(fitness);
 		
