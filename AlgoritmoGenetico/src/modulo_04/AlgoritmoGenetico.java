@@ -45,8 +45,20 @@ public class AlgoritmoGenetico {
 	}
 
 	//evolucao populacao
-	//public void evolucaoPopulacao(Populacao populacao, Cidade cidades[])
+	public void evolucaoPopulacao(Populacao populacao, QuadroAula quadroAula) {
+		double populacaoFitness = 0;
+		
+		//loop pelo fitness dos individuos da populacao e realizando sua soma
+		//fitness
+		for(Individuo individuo : populacao.getPopulacao()) {
+			populacaoFitness += this.calcFitness(individuo, quadroAula);
+		}
+		
+		populacao.setPopulacaoFitness(populacaoFitness);
+	}
 
+	
+	//verificar finalizacao
 	public boolean condicaoFinalizar(int geracaoAtual, int maxGeracao) {
 		return (geracaoAtual > maxGeracao);
 	}

@@ -19,7 +19,7 @@ public class QuadroAulasGenetico {
 		int geracaoAtual = 1;
 		
 		//inicia loop de evolucao
-		while(true) {
+		while(geracaoAtual < 500) {
 			//print fitness
 			System.out.println("G" + geracaoAtual + " Melhor fitness: " + populacao.getFitnest(0).getFitness()); 
 			
@@ -31,6 +31,7 @@ public class QuadroAulasGenetico {
 			
 			
 			// aplica evol
+			ag.evolucaoPopulacao(populacao, quadroAula);
 			
 			//incrementa geracao
 			geracaoAtual++;
