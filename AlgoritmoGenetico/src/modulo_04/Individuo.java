@@ -4,24 +4,6 @@ public class Individuo {
 	private int[] cromossomo;
 	private double fitness = -1;
 
-	//construtor #1
-	public Individuo(int[] cromossomo) {
-		this.cromossomo = cromossomo;
-	}
-
-	//construtor #2
-	public Individuo(int cromossomoTamanho) {
-		//criando individuo
-		int[] individuo;
-		individuo = new int[cromossomoTamanho];
-		
-		for(int gene = 0; gene < cromossomoTamanho; gene++) {
-			individuo[gene] = gene;
-		}
-		
-		this.cromossomo = individuo;			
-	}
-	
 	//construtor #3
 	public Individuo(QuadroAula quadroAula) {
 		int numAulas = quadroAula.getNumAulas();
@@ -55,9 +37,26 @@ public class Individuo {
 		}
 		
 		this.cromossomo = novoCromossomo;
+	}	
+	
+	//construtor #2
+	public Individuo(int cromossomoTamanho) {
+		//criando individuo
+		int[] individuo;
+		individuo = new int[cromossomoTamanho];
+		
+		for(int gene = 0; gene < cromossomoTamanho; gene++) {
+			individuo[gene] = gene;
+		}
+		
+		this.cromossomo = individuo;			
 	}
 	
-
+	//construtor #1
+	public Individuo(int[] cromossomo) {
+		this.cromossomo = cromossomo;
+	}
+	
 	public int[] getCromossomo() {
 		return this.cromossomo;
 	}
@@ -91,7 +90,7 @@ public class Individuo {
 	public String ToString() {
 		String saida = "";
 		for (int gene = 0; gene < this.cromossomo.length; gene++) {
-			saida += this.cromossomo[gene];
+			saida += this.cromossomo[gene] + ",";
 		}
 		return saida;
 	}

@@ -12,16 +12,6 @@ public class Populacao {
 	public Populacao(int populacaoTamanho) {
 		this.populacao = new Individuo[populacaoTamanho];
 	}
-
-	//construtor #2
-	public Populacao(int populacaoTamanho, int cromossomoTamanho) {
-		this.populacao = new Individuo[populacaoTamanho];
-
-		for (int individuoNum = 0; individuoNum < populacaoTamanho; individuoNum++) {
-			Individuo candidato = new Individuo(cromossomoTamanho);
-			this.populacao[individuoNum] = candidato;
-		}
-	}
 	
 	//construtor #3
 	public Populacao(int populacaoTamanho, QuadroAula quadroAula) {
@@ -37,6 +27,17 @@ public class Populacao {
 			this.populacao[indexIndividuo] = individuo;
 		}
 	}
+
+	//construtor #2
+	public Populacao(int populacaoTamanho, int cromossomoTamanho) {
+		this.populacao = new Individuo[populacaoTamanho];
+
+		for (int individuoNum = 0; individuoNum < populacaoTamanho; individuoNum++) {
+			Individuo candidato = new Individuo(cromossomoTamanho);
+			this.populacao[individuoNum] = candidato;
+		}
+	}
+	
 
 	public Individuo[] getPopulacao() {
 		return this.populacao;

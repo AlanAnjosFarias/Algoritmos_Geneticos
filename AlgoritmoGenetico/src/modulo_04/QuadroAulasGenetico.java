@@ -41,7 +41,7 @@ public class QuadroAulasGenetico {
 		}
 		
 		// Imprimi fitness final
-		quadroAula.criarAula(populacao.getFitnest(0));
+		quadroAula.criarAulas(populacao.getFitnest(0));
 		System.out.println();
 		System.out.println("Solucao Encontrada após " + geracaoAtual + " gerações");
 		System.out.println("Fitness final da solucao: " + populacao.getFitnest(0).getFitness());

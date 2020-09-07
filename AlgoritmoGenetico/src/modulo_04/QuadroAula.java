@@ -33,32 +33,27 @@ public class QuadroAula {
 		this.grupos = clonavel.getGrupos();
 		this.horasUtil = clonavel.getHorasUtil();
 	}
-	
-	//OK
-	public HashMap<Integer, Sala> getSalas(){
-		return this.salas;
-	}
-	
-	//OK
-	public HashMap<Integer, Professor> getProfessores(){
-		return this.professores;
-	}
-	
-	//OK
-	public HashMap<Integer, ModuloCurso> getModulosCurso(){
-		return this.modulosCurso;
-	}
-	
+
 	//OK
 	public HashMap<Integer, Grupo> getGrupos(){
 		return this.grupos;
 	}
-	
+
 	//OK
 	public HashMap<Integer, HoraUtil> getHorasUtil(){
 		return this.horasUtil;
 	}
-	
+
+	//OK
+	public HashMap<Integer, ModuloCurso> getModulosCurso(){
+		return this.modulosCurso;
+	}
+
+	//OK
+	public HashMap<Integer, Professor> getProfessores(){
+		return this.professores;
+	}
+		
 	
 	/**
 	 * Add nova sala
@@ -140,7 +135,7 @@ public class QuadroAula {
 	 *  
 	 */
 	//OK
-	public void criarAula(Individuo individuo) {
+	public void criarAulas(Individuo individuo) {
 		//inicia aula
 		Aula aulas[] = new Aula[this.getNumAulas()];
 		
@@ -188,6 +183,10 @@ public class QuadroAula {
 		return (Sala) this.salas.get(salaID);
 	}
 	
+	//OK
+	public HashMap<Integer, Sala> getSalas(){
+		return this.salas;
+	}
 	
 	/**
 	 * obtendo sala aleatoria
@@ -291,7 +290,7 @@ public class QuadroAula {
 	//OK
 	public HoraUtil getHoraUtilAleatoria() {
 		Object[] horaUtilArray = this.horasUtil.values().toArray();
-		HoraUtil horaUtil = (HoraUtil) horaUtilArray[(int) (horaUtilArray.length*Math.random())];
+		HoraUtil horaUtil = (HoraUtil) horaUtilArray[(int) (horaUtilArray.length * Math.random())];
 		return horaUtil;
 	}
 	
@@ -350,7 +349,7 @@ public class QuadroAula {
 			
 			//verifica se a sala ja esta usada
 			for(Aula aulaB : this.aulas) {
-				if(aulaA.getSalaID() == aulaB.getSalaID() && aulaA.getHoraUtilID() == aulaB.getHoraUtilID() && aulaA.getAulaID() == aulaB.getAulaID()) {
+				if(aulaA.getSalaID() == aulaB.getSalaID() && aulaA.getHoraUtilID() == aulaB.getHoraUtilID() && aulaA.getAulaID() != aulaB.getAulaID()) {
 					confrontos++;
 					break;					
 				}
@@ -358,7 +357,7 @@ public class QuadroAula {
 			
 			//verificar se o professor esta disponivel
 			for(Aula aulaB : this.aulas) {
-				if(aulaA.getProfessorID() == aulaB.getProfessorID() && aulaA.getHoraUtilID() == aulaB.getHoraUtilID() && aulaA.getAulaID() == aulaB.getAulaID()) {
+				if(aulaA.getProfessorID() == aulaB.getProfessorID() && aulaA.getHoraUtilID() == aulaB.getHoraUtilID() && aulaA.getAulaID() != aulaB.getAulaID()) {
 					confrontos++;
 					break;
 				}

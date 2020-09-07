@@ -4,13 +4,13 @@ public class ModuloCurso {
 	private final int moduloID;
 	private final String moduloCodigo;
 	private final String modulo;
-	private final int professorID[];
+	private final int professoresID[];
 	
-	public ModuloCurso(int moduloID, String moduloCodigo, String modulo, int professorID[]) {
+	public ModuloCurso(int moduloID, String moduloCodigo, String modulo, int professoresID[]) {
 		this.moduloID = moduloID;
 		this.moduloCodigo = moduloCodigo;
 		this.modulo = modulo;
-		this.professorID = professorID;
+		this.professoresID = professoresID;
 	}
 	
 	public int getModuloID() {
@@ -26,7 +26,7 @@ public class ModuloCurso {
 	}
 	
 	public int getAleatorioProfessorID() {
-		int auxProfessorID = professorID[(int) (professorID.length * Math.random())];
+		int auxProfessorID = professoresID[(int) (professoresID.length * Math.random())];
 		
 		return auxProfessorID;
 	}
