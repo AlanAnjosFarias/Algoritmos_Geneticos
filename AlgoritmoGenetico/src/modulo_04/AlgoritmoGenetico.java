@@ -120,6 +120,35 @@ public class AlgoritmoGenetico {
 	}
 
 	// mutacao
-	//public Populacao mutacaoPopulacao(Populacao populacao) 
+	public Populacao mutacaoPopulacao(Populacao populacao, QuadroAula quadroAula) {
+		//inicializa nova populacao
+		Populacao novaPopulacao = new Populacao(this.populacaoTamanho);
+		
+		//percorre toda populacao pelo seu fitness
+		for(int indexPopulacao = 0; indexPopulacao < populacao.populacaoTamanho(); indexPopulacao++) {
+			Individuo individuo = populacao.getFitnest(indexPopulacao);
+			
+			//cria um individuo aleatorio to trocar os genes
+			Individuo individuoAleatorio = new Individuo(quadroAula);
+			
+			//loop pelos genes dos individuos
+			for(int indexGene = 0; indexGene < individuo.getCromossomoTamanho(); indexGene++) {
+				//pula mutacao no caso do individuo ser Elite
+				if(indexPopulacao > this.numElites) {
+					//verifica se o gene ser mutado
+					if(this.mutacaoTaxa > Math.random()) {
+						//troca para o novo gene
+						individuo.setGene(indexGene, individuoAleatorio.getGene(indexGene));
+					}
+				}
+			}
+			
+			//add o individuo a populacao
+			novaPopulacao.setIndividuo(indexPopulacao, individuo);
+		}
+		
+		//retorna populacao com mutacao
+		return novaPopulacao;
+	}
 
 }
