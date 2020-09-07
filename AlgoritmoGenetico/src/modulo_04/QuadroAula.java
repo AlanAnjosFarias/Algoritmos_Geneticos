@@ -34,6 +34,7 @@ public class QuadroAula {
 		this.horasUtil = clonavel.getHorasUtil();
 	}
 	
+	//OK
 	public HashMap<Integer, Sala> getSalas(){
 		return this.salas;
 	}
@@ -194,6 +195,7 @@ public class QuadroAula {
 	 * @return room
 	 *  
 	 */
+	//OK
 	public Sala getSalaAleatoria(){
 		Object[] salasArray = this.salas.values().toArray();
 		Sala sala = (Sala) salasArray[(int) (salasArray.length * Math.random())];
@@ -209,6 +211,7 @@ public class QuadroAula {
 	 * @return professor
 	 *  
 	 */
+	//OK
 	public Professor getProfessor(int professorID) {
 		return (Professor) this.professores.get(professorID);
 	}
@@ -221,6 +224,7 @@ public class QuadroAula {
 	 * @return modulo
 	 *  
 	 */
+	//OK
 	public ModuloCurso getModuloCurso(int moduloID) {
 		return (ModuloCurso) this.modulosCurso.get(moduloID);
 	}
@@ -233,6 +237,7 @@ public class QuadroAula {
 	 * @return moduloID array
 	 *  
 	 */
+	//OK
 	public int[] getGrupoModulos(int grupoID) {
 		Grupo grupo = (Grupo) this.grupos.get(grupoID);
 		return grupo.getModulosID();
@@ -246,6 +251,7 @@ public class QuadroAula {
 	 * @return grupo
 	 *  
 	 */
+	//OK
 	public Grupo getGrupo(int grupoID) {
 		return (Grupo) this.grupos.get(grupoID);
 	}
@@ -258,6 +264,7 @@ public class QuadroAula {
 	 * @return array de grupos
 	 *  
 	 */
+	//OK
 	public  Grupo[] getGruposComoArray() {
 		return (Grupo[]) this.grupos.values().toArray(new Grupo[this.grupos.size()]);
 	}
@@ -269,6 +276,7 @@ public class QuadroAula {
 	 * @return HoraUtil
 	 *  
 	 */
+	//OK
 	public HoraUtil getHoraUtil(int horaUtilID) {
 		return (HoraUtil) this.horasUtil.get(horaUtilID);
 	}
@@ -280,6 +288,7 @@ public class QuadroAula {
 	 * @return HoraUtil
 	 *  
 	 */
+	//OK
 	public HoraUtil getHoraUtilAleatoria() {
 		Object[] horaUtilArray = this.horasUtil.values().toArray();
 		HoraUtil horaUtil = (HoraUtil) horaUtilArray[(int) (horaUtilArray.length*Math.random())];
@@ -293,6 +302,7 @@ public class QuadroAula {
 	 * @return aulas
 	 *  
 	 */
+	//OK
 	public Aula[] getAulas() {
 		return this.aulas;
 	}
@@ -304,6 +314,7 @@ public class QuadroAula {
 	 * @return numAulas
 	 *  
 	 */
+	//OK
 	public int getNumAulas() {
 		if(this.numAulas > 0) {
 			return this.numAulas;
@@ -325,12 +336,14 @@ public class QuadroAula {
 	 * @return confrontos
 	 *  
 	 */
+	//OK
 	public int calcConfrontos() {
 		int confrontos = 0;
 		for(Aula aulaA : this.aulas) {
 			//verifica capacidade
 			int salaCapacidade = this.getSala(aulaA.getSalaID()).getCapacidade();
 			int grupoTamanho = this.getGrupo(aulaA.getGrupoID()).getGrupoTamanho();
+			
 			if(salaCapacidade < grupoTamanho) {
 				confrontos++;
 			}

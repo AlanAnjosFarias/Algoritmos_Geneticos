@@ -1,14 +1,12 @@
 package modulo_04;
 
-import java.util.Arrays;
-
 
 public class AlgoritmoGenetico {
+	
 	private int populacaoTamanho;
 	private double mutacaoTaxa;
 	private double cruzamentoTaxa;
 	private int numElites;
-
 	protected int torneioTamanho;
 
 	public AlgoritmoGenetico(int populacaoTamanho, double mutacaoTaxa, double cruzamentoTaxa, int elitismo,
@@ -109,6 +107,7 @@ public class AlgoritmoGenetico {
 						filho.setGene(indexGene, mae.getGene(indexGene));
 					}
 				}
+				
 				novaPopulacao.setIndividuo(indexPopulacao, filho);
 
 			} else {

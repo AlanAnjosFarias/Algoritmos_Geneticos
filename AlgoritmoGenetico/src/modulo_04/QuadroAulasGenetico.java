@@ -3,11 +3,11 @@ package modulo_04;
 public class QuadroAulasGenetico {
 
 	public static void main(String[] args) {
-		// TODO cria quadro de aula com todos os parametros
+		// cria quadro de aula com todos os parametros
 		QuadroAula quadroAula = inicializarQuadroAulas();
 		
 		//inicializa algoritmo genetico
-		AlgoritmoGenetico ag = new AlgoritmoGenetico(100, 0.01, 0.9, 2, 5);
+		AlgoritmoGenetico ag = new AlgoritmoGenetico(100, 0.1, 0.9, 2, 5);
 		
 		//inicializa populacao
 		Populacao populacao = ag.inicializarPopulacao(quadroAula);
